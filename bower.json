@@ -1,0 +1,25 @@
+{
+  "name": "backbone_tree_view",
+  "version": "0.0.1",
+  "authors": [
+    "rmack <rmack@pacificmetrics.com>"
+  ],
+  "description": "A Lazy Loading Tree View",
+  "main": "views/TreeView.js",
+  "dependencies": {
+    "jquery": "~1.10.0",
+    "underscore": "~1.5.1",
+    "requirejs": "~2.1.8"
+  },
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
