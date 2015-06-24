@@ -1,0 +1,7 @@
+<i class="tree-node-icon-expand fa fa-plus-square" data-bind="toggle: isExpandable"></i>
+<i class="tree-node-icon-collapse fa fa-minus-square" data-bind="toggle: isCollapsible"></i>
+<i class="tree-node-icon-collapse fa fa-circle-o-notch fa-spin" data-bind="toggle: isLoading"></i>
+<input type="checkbox" data-bind="toggle: isSelectable, checked: isSelected">
+<span class="tree-node-label" data-bind="html: label"></span>
+<span class="tree-node-description" data-bind="html: description"></span>
+<ul class="tree-node-no-children" data-bind="toggle: all(isExpanded, isEmpty)"><li>No items currently available</li></ul>
