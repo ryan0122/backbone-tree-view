@@ -4,7 +4,7 @@ define([
     'backbone',
     'backbone.marionette',
     'backbone.epoxy',
-    'text!../tpl/TreeNodeView.html',
+    'text!../../tpl/TreeNodeView.html',
     '../views/baseViewMixin',
     '../models/TreeNode'
 ], function($, _, Backbone, Marionette, Epoxy, template, baseViewMixin, TreeNode) {
