@@ -1,11 +1,9 @@
 define(["underscore",
         "backbone",
         "backbone.marionette",
-        "backbone.epoxy",
-        "backbone.validation",
-        "app/utils/message"
+        "backbone.epoxy"
     ],
-    function(_, Backbone, Marionette, Epoxy, Validation, message) {
+    function(_, Backbone, Marionette, Epoxy) {
         'use strict';
 
         // Base set of functions that can be mixed into standard views such as ItemViews, CompositeViews, etc.

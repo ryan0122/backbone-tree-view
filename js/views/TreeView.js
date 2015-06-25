@@ -4,9 +4,9 @@ define([
     'backbone',
     'backbone.marionette',
     'backbone.epoxy',
-    'views/baseViewMixin',
-    'iews/TreeNodesCollectionView',
-    'models/TreeNode'
+    '../views/baseViewMixin',
+    '../views/TreeNodesCollectionView',
+    '../models/TreeNode'
 ], function($, _, Backbone, Marionette, Epoxy, baseViewMixin, TreeNodesCollectionView, TreeNode) {
     'use strict';
 
