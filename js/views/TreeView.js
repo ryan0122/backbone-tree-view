@@ -14,7 +14,7 @@ define([
 
         template: false,
         tagName: 'div',
-        className: 'eagle-tree-view',
+        className: 'tree-view',
         enableValidation: false,
 
         onInitialize: function(options) {
