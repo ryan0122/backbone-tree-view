@@ -59,15 +59,7 @@ define(["underscore",
             modelSync: function() {
                 this.modelHasChanged = false;
                 this.modelChangedAfterViewRendered = false;
-            },
-
-            back: function() {
-                app.back();
-            },
-            hideErrors: function() {
-                this.$(".view-errors").hide();
             }
-
         };
 
     });
