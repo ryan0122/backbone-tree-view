@@ -7,7 +7,7 @@ define([
     '../views/baseViewMixin',
     '../views/TreeView',
     '../models/TreeNode'
-], function($, _, Backbone, Marionette, Epoxy, contentAreas, gradeLevels, baseViewMixin, TreeView, TreeNode) {
+], function($, _, Backbone, Marionette, Epoxy, baseViewMixin, TreeView, TreeNode) {
     'use strict';
 
     var AbstractBrowserView = Backbone.Marionette.LayoutView.extend(baseViewMixin).extend({
