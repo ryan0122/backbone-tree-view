@@ -24,32 +24,35 @@ define([
             this.listenTo(this.selectedModels, "add remove reset", this.onSelectionChange);
             //this.listenTo(this.model, "change:gradeLevel change:contentArea", this.resetBrowser);
 
+        },
+
+        onShow: function(view) {
+
             //DropDown logic from options
-            if(options.config.dropdowns) {
-                this.handleDropdowns(options.config.dropdowns);
+            if(view.options.config.dropdowns) {
+                this.handleDropdowns(view.options.config.dropdowns);
             }
 
             //Tree Root URL logic
-            if(options.config.treeRootUrl) {
-                this.setTreeRootUrl(options.config.treeRootUrl);
+            if(view.options.config.treeRootUrl) {
+                this.setTreeRootUrl(view.options.config.treeRootUrl);
             }
 
             //URL for children logic
-            if(options.config.urlForChildren) {
-                this.setUrlForChildren(options.config.urlForChildren);
+            if(view.options.config.urlForChildren) {
+                this.setUrlForChildren(view.options.config.urlForChildren);
             }
-        },
 
-        onShow: function() {
             //Now a good time to see if gradeLevel and contentArea have been passed and if the have, set model's values
             //this.options.gradeLevel && this.model.set('gradeLevel', this.options.gradeLevel);
             //this.options.contentArea && this.model.set('contentArea', this.options.contentArea);
-//            this.resetBrowser();
+            this.resetBrowser(view);
         },
 
 
         handleDropdowns: function(dropdowns) {
             var that = this;
+            console.log('We have DROPDOWNS config');
 
             //_.each.(dropdowns, function(dropdown){
             //
@@ -57,6 +60,7 @@ define([
         },
 
         setTreeRootUrl: function(url){
+            console.log('We have TREEROOT config');
             if(typeof url === "function") {
 
             } else {
@@ -66,6 +70,7 @@ define([
         },
 
         setUrlForChildren: function(url){
+            console.log('We have SETURLFORCHILDREN config');
             if(typeof url === "function") {
 
             } else {
@@ -108,9 +113,6 @@ define([
         resetBrowser: function() {
             //must be overridden by browser that is abstracting this view.
         }
-
-//        onRender: function() {
-//        }
 
     });
 
