@@ -76,7 +76,7 @@ define([
                 this.showChildren();
                 this.model.set('isEmpty', true);
             } else {
-                require(["app/views/TreeNodesCollectionView"], function(TreeNodesCollectionView) {
+                require(["backbone-tree-view/js/views/TreeNodesCollectionView"], function(TreeNodesCollectionView) {
                     that.childrenView = new TreeNodesCollectionView({ collection: that.collection,
                         selectedModels: that.options.selectedModels,
                         urlForChildren: that.options.urlForChildren });
