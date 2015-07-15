@@ -14,7 +14,7 @@ define([
 
         enableValidation: false,
 
-        onInitialize: function(options) {
+        onInitialize: function(options, Model) {
             this.browserCollection = new TreeNode.Collection();
             this.selectedModels = new TreeNode.Collection();
             this.setSelectedModels(options.ids || []);
@@ -22,8 +22,6 @@ define([
                 selectedModelsCount: this.selectedModels.size()
             });
             this.listenTo(this.selectedModels, "add remove reset", this.onSelectionChange);
-            //this.listenTo(this.model, "change:gradeLevel change:contentArea", this.resetBrowser);
-
         },
 
         onShow: function(view) {
@@ -43,9 +41,6 @@ define([
                 this.setUrlForChildren(view.options.config.urlForChildren);
             }
 
-            //Now a good time to see if gradeLevel and contentArea have been passed and if the have, set model's values
-            //this.options.gradeLevel && this.model.set('gradeLevel', this.options.gradeLevel);
-            //this.options.contentArea && this.model.set('contentArea', this.options.contentArea);
             this.resetBrowser(view);
         },
 
