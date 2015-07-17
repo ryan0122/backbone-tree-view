@@ -12,9 +12,12 @@ define([
 
     var AbstractBrowserView = Backbone.Marionette.LayoutView.extend(baseViewMixin).extend({
 
+        viewOptions: ['urlForChildren', 'urlForRoot'],
+
         enableValidation: false,
 
         onInitialize: function(options, Model) {
+            this.mergeOptions(options, this.viewOptions);
             this.browserCollection = new TreeNode.Collection();
             this.selectedModels = new TreeNode.Collection();
             this.setSelectedModels(options.ids || []);
@@ -22,56 +25,6 @@ define([
                 selectedModelsCount: this.selectedModels.size()
             });
             this.listenTo(this.selectedModels, "add remove reset", this.onSelectionChange);
-        },
-
-        onShow: function(view) {
-
-            //DropDown logic from options
-            if(view.options.config.dropdowns) {
-                this.handleDropdowns(view.options.config.dropdowns);
-            }
-
-            //Tree Root URL logic
-            if(view.options.config.treeRootUrl) {
-                this.setTreeRootUrl(view.options.config.treeRootUrl);
-            }
-
-            //URL for children logic
-            if(view.options.config.urlForChildren) {
-                this.setUrlForChildren(view.options.config.urlForChildren);
-            }
-
-            this.resetBrowser(view);
-        },
-
-
-        handleDropdowns: function(dropdowns) {
-            var that = this;
-            console.log('We have DROPDOWNS config');
-
-            //_.each.(dropdowns, function(dropdown){
-            //
-            //});
-        },
-
-        setTreeRootUrl: function(url){
-            console.log('We have TREEROOT config');
-            if(typeof url === "function") {
-
-            } else {
-                this.treeRootUrl = url;
-            }
-
-        },
-
-        setUrlForChildren: function(url){
-            console.log('We have SETURLFORCHILDREN config');
-            if(typeof url === "function") {
-
-            } else {
-                this.urlForChildren = url;
-            }
-
         },
 
         onSelectionChange: function() {
@@ -106,7 +59,29 @@ define([
         },
 
         resetBrowser: function() {
-            //must be overridden by browser that is abstracting this view.
+            console.log(this.options.config);
+            if (this.browserCollection.size()) {
+                this.browserCollection.reset();
+                this.selectedModels.reset();
+            }
+
+            var TreeNodeModel = TreeNode.Model.extend({
+                computeds: _.extend({
+                    hasChildren: function() { return !!this.get("numberOfChildren"); }
+                }, TreeNode.Model.prototype.computeds)
+            });
+
+            this.browserCollection.model = TreeNodeModel;
+            this.browserCollection.fetch({
+                url: this.getOption('urlForRoot').call(this)
+            });
+
+            this.treeViewRegion.show(this.treeView = new TreeView({
+                collection: this.browserCollection,
+                selectedModels: this.selectedModels,
+                TreeNodeModel: TreeNodeModel,
+                urlForChildren: $.proxy(this.getOption('urlForChildren'), this)
+            }));
         }
 
     });
